@@ -5,7 +5,7 @@ sudo vim /etc/pacman.conf
 ```
 ### enable multilib
 ```
-[multilib]`
+[multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
 ### enable color
