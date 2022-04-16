@@ -26,7 +26,7 @@
 `sudo systemctl enable reflector.timer`
 
 
-### yay/aur
+### aur/yay
 
 `sudo pacman -S --needed git base-devel`
 
@@ -38,6 +38,8 @@
 
 ### octopi
 `yay -S octopi alpm_octopi_utils octopi-notifier-qt5`
+
+---
 
 ## hardware
 
@@ -68,14 +70,13 @@
 `yay -S --needed intel-ucode`
 
 
+---
 
-## os
+
+## packages
+
+### os
 `yay -S gnome-tweaks man-db man-pages chrome-gnome-shell extension-manager`
-
-
-
-## other packages
-
 
 ### general
 `yay -S firefox transmission-gtk zoom`
@@ -131,6 +132,8 @@
 `sudo usermod -a -G libvirt $USER`
 
 `newgrp libvirt`
+
+---
 
 
 ## shell config
