@@ -2,7 +2,7 @@
     "audio": "pulseaudio",
     "bootloader": "grub-install",
     "filesystem": "ext4",
-    "gfx_driver": "Nvidia",
+    "gfx_driver": "All open-source (default)",
     "harddrives": [
         "/dev/vda"
     ],
@@ -17,7 +17,7 @@
     },
     "ntp": true,
     "packages": [],
-    "profile": "gnome",
+    "profile": "xfce4",
     "superusers": {
         "matt": {
             "!password": "matt"
