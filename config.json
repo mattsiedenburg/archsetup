@@ -4,7 +4,7 @@
     "filesystem": "ext4",
     "gfx_driver": "Nvidia",
     "harddrives": [
-        "/dev/nvme0n1"
+        "/dev/vda"
     ],
     "hostname": "arch",
     "kernels": [
