@@ -4,7 +4,8 @@
     "filesystem": "ext4",
     "gfx_driver": "All open-source (default)",
     "harddrive": {
-        "path": "/dev/vda"
+        "path": "/dev/vda",
+        "wipe": true
     },
     "hostname": "arch",
     "kernels": [
