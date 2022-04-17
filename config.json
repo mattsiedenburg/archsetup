@@ -1,6 +1,6 @@
 {
     "audio": "pulseaudio",
-    "bootloader": "systemd-bootctl",
+    "bootloader": "grub-install",
     "config": null,
     "creds": null,
     "debug": false,
