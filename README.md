@@ -1,4 +1,8 @@
 # archsetup
+## archinstall
+```
+python -m archinstall --config <local path or remote URL>
+```
 ## pacman config
 ```
 sudo vim /etc/pacman.conf
