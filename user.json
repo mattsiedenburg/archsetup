@@ -1,0 +1,7 @@
+{
+    "!superusers": {
+        "matt": {
+            "!password": "matt"
+        }
+    }
+}
