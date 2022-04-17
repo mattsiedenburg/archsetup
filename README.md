@@ -1,7 +1,7 @@
 # archsetup
 ## archinstall
 ```
-python -m archinstall --config <local path or remote URL>
+python -m archinstall --config https://raw.githubusercontent.com/mattsiedenburg/archsetup/main/config.json
 ```
 ## pacman config
 ```
