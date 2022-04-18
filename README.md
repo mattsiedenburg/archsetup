@@ -63,7 +63,7 @@ sudo systemctl enable touchegg.service --now
 ```
 ### ssd trim
 ```
-yay -S util-linux --needed`
+yay -S util-linux --needed
 sudo systemctl enable fstrim.timer --now
 ```
 ### power
