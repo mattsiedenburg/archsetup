@@ -1,4 +1,7 @@
 # archsetup
+Documenting my setup.
+
+TODO: Use ansible to automate the post-archinstall setup.
 ## archinstall
 ```
 # Passing multiple URLs doesn't seem to work, so download configs locally
