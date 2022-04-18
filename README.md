@@ -21,13 +21,21 @@ Include = /etc/pacman.d/mirrorlist
 ```
 Color
 ```
+### enable parallel downloads
+```
+ParallelDownloads = 5
+```
+### updata pacman
+```
+sudo pacman -Syu
+```
 ## reflector
 ```
-sudo pacman -S reflector-mirrorlist-update
+sudo pacman -S reflector
 ```
 ### one-time execution
 ```
-sudo reflector --country 'United States' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --country 'United States' --age 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 ```
 ### edit config
 ```
@@ -38,7 +46,8 @@ sudo vim /etc/xdg/reflector/reflector.conf
 sudo systemctl enable reflector.timer
 ```
 ### aur/yay
-```sudo pacman -S --needed git base-devel
+```
+sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
 makepkg -si
