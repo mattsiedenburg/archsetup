@@ -12,7 +12,7 @@ TODO: Use ansible to automate the post-archinstall setup.
 
 curl https://raw.githubusercontent.com/mattsiedenburg/archsetup/main/\{config.json,disks.json,creds.json\} -O
 
-archinstall --config config.json --disk_layouts disks.json --creds creds.json --silent
+archinstall --config config.json --disk_layouts disks.json --creds creds.json --silent && reboot
 ```
 
 ## pacman config
@@ -87,7 +87,14 @@ yay -S octopi alpm_octopi_utils octopi-notifier-qt5
 
 ## hardware
 
-### bluetooth
+### unmute and set volume level
+
+```bash
+pactl set-sink-mute @DEFAULT_SINK@ false
+pactl set-sink-volume @DEFAULT_SINK@ 25%
+```
+
+### enable bluetooth
 
 ```bash
 sudo systemctl enable bluetooth.service --now
@@ -129,13 +136,20 @@ yay -S --needed intel-ucode
 
 ## packages
 
-### os
+### general
 
 ```bash
-yay -S gnome-tweaks man-db man-pages chrome-gnome-shell extension-manager
+man-db man-pages
 ```
 
-### general
+### gnome
+
+```bash
+# GNOME only
+yay -S gnome-tweaks chrome-gnome-shell extension-manager
+```
+
+### internet
 
 ```bash
 yay -S firefox transmission-gtk zoom
