@@ -5,11 +5,17 @@ Documenting my setup.
 
 TODO: Use ansible to automate the post-archinstall setup.
 
+## iwctl
+
+```bash
+# <DEVICE is typically wlan0>
+iwctl --passphrase=<PSK> station <DEVICE> connect <SSID>
+```
+
 ## archinstall
 
 ```bash
 # Passing multiple URLs doesn't seem to work, so download configs locally
-
 curl https://raw.githubusercontent.com/mattsiedenburg/archsetup/main/\{config.json,disks.json,creds.json\} -O
 
 archinstall --config config.json --disk_layouts disks.json --creds creds.json --silent && reboot
