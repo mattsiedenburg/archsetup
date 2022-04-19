@@ -73,7 +73,7 @@ sudo vim /etc/xdg/reflector/reflector.conf
 ### enable timer
 
 ```bash
-sudo systemctl enable reflector.timer
+sudo systemctl enable reflector.timer --now
 ```
 
 ### aur/yay
@@ -230,6 +230,17 @@ yay -S ttf-nerd-fonts-symbols
 ```bash
 yay -S zsh
 chsh --shell=/bin/zsh
+```
+
+### bat and exa
+
+```bash
+yay -S bat exa
+
+# add to .zshrc
+alias ll='exa -ahl --group-directories-first --icons --color always'
+alias less='bat'
+alias cat='bat -pp'
 ```
 
 ### antigen
