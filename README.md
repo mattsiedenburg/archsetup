@@ -76,7 +76,9 @@ sudo vim /etc/xdg/reflector/reflector.conf
 sudo systemctl enable reflector.timer --now
 ```
 
-### aur/yay
+## aur
+
+### yay
 
 ```bash
 sudo pacman -S --needed git base-devel
@@ -125,7 +127,7 @@ sudo systemctl enable touchegg.service --now
 
 ```bash
 yay -S util-linux --needed
-sudo systemctl enable fstrim.timer --now
+sudo systemctl enable fstrim.timer
 ```
 
 ### power
