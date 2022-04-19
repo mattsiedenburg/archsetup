@@ -55,13 +55,7 @@ sudo pacman -Syu
 ## reflector
 
 ```bash
-sudo pacman -S reflector
-```
-
-### one-time execution
-
-```bash
-sudo reflector --country 'United States' --age 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+sudo pacman -S reflector --needed
 ```
 
 ### edit config
@@ -92,7 +86,7 @@ rm -rf yay-bin
 ### octopi
 
 ```bash
-yay -S octopi alpm_octopi_utils octopi-notifier-qt5
+yay -S octopi alpm_octopi_utils octopi-notifier-qt5 --needed
 ```
 
 ## hardware
@@ -108,18 +102,19 @@ pactl set-sink-volume @DEFAULT_SINK@ 25%
 
 ```bash
 sudo systemctl enable bluetooth.service --now
+rfkill unblock bluetooth
 ```
 
 ### prime
 
 ```bash
-yay -S nvidia-prime
+yay -S nvidia-prime --needed
 ```
 
 ### touchpad
 
 ```bash
-yay -S touchegg touche
+yay -S touchegg touche --needed
 sudo systemctl enable touchegg.service --now
 ```
 
@@ -133,7 +128,7 @@ sudo systemctl enable fstrim.timer
 ### power
 
 ```bash
-yay -S gnome-power-manager power-profiles-daemon thermald
+yay -S gnome-power-manager power-profiles-daemon thermald --needed
 sudo systemctl enable power-profiles-daemon.service --now
 sudo systemctl enable thermald.service --now
 ```
@@ -141,7 +136,7 @@ sudo systemctl enable thermald.service --now
 ### microcode update
 
 ```bash
-yay -S --needed intel-ucode
+yay -S intel-ucode --needed
 ```
 
 ## packages
@@ -149,45 +144,45 @@ yay -S --needed intel-ucode
 ### general
 
 ```bash
-man-db man-pages
+yay -S man-db man-pages --needed
 ```
 
 ### gnome
 
 ```bash
 # GNOME only
-yay -S gnome-tweaks chrome-gnome-shell extension-manager
+yay -S gnome-tweaks chrome-gnome-shell extension-manager --needed
 ```
 
 ### internet
 
 ```bash
-yay -S firefox transmission-gtk zoom
+yay -S firefox transmission-gtk zoom --needed
 ```
 
 ### media
 
 ```bash
-yay -S spotify audacious vlc
+yay -S spotify audacious vlc --needed
 ```
 
 ### gaming
 
 ```bash
-yay -S steam lutris minecraft-launcher
+yay -S steam lutris minecraft-launcher --needed
 ```
 
 ### text editors and dev tools
 
 ```bash
-yay -S sublime-text-4 visual-studio-code-bin git git-lfs
+yay -S sublime-text-4 visual-studio-code-bin git git-lfs --needed
 ```
 
 
 ### docker
 
 ```bash
-yay -S docker docker-compose
+yay -S docker docker-compose --needed
 sudo systemctl enable docker.service --now
 sudo usermod -a -G docker $USER
 newgrp docker
@@ -196,7 +191,7 @@ newgrp docker
 ### k8s
 
 ```bash
-yay -S kubectl helm minikube kind-bin
+yay -S kubectl helm minikube kind-bin --needed
 
 # $HOME/.zshrc
 source <(kubectl completion zsh)
@@ -224,20 +219,20 @@ newgrp libvirt
 ### glyphs
 
 ```bash
-yay -S ttf-nerd-fonts-symbols
+yay -S ttf-nerd-fonts-symbols --needed
 ```
 
 ### zsh
 
 ```bash
-yay -S zsh
+yay -S zsh --needed
 chsh --shell=/bin/zsh
 ```
 
 ### bat and exa
 
 ```bash
-yay -S bat exa
+yay -S bat exa --needed
 
 # add to .zshrc
 alias ll='exa -ahl --group-directories-first --icons --color always'
@@ -248,7 +243,7 @@ alias cat='bat -pp'
 ### antigen
 
 ```bash
-yay -S antigen
+yay -S antigen --needed
 ```
 
 ### antigen setup
@@ -272,4 +267,27 @@ antigen bundle zsh-users/zsh-completions
 antigen theme romkatv/powerlevel10k
 
 antigen apply
+```
+
+## github setup
+
+### ssh key
+
+```bash
+ssh-keygen -t rsa -C "matthewsiedenburg@domain.com"
+ssh-add
+# Add key to github
+```
+
+### test
+
+```bash
+ssh -T git@github.com
+```
+
+### git config
+
+```bash
+git config --global user.name 'Matt Siedenburg'
+git config --global user.email 'matthewsiedenburg@domain.com'
 ```
