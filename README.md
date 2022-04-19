@@ -175,11 +175,12 @@ yay -S spotify audacious vlc
 yay -S steam lutris minecraft-launcher
 ```
 
-### text editors
+### text editors and dev tools
 
 ```bash
-yay -S sublime-text-4 visual-studio-code-bin
+yay -S sublime-text-4 visual-studio-code-bin git git-lfs
 ```
+
 
 ### docker
 
