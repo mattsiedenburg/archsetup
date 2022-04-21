@@ -208,6 +208,7 @@ yay -S iptables-nft dnsmasq dmidecode --needed
 yay -S bridge-utils --needed
 yay -S openbsd-netcat --needed
 yay -S virt-manager --needed
+yay -S vagrant --needed
 
 sudo systemctl enable libvirtd.service --now
 sudo usermod -a -G libvirt $USER
