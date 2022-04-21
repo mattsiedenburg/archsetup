@@ -5,6 +5,20 @@ Documenting my setup.
 
 TODO: Use ansible to automate the post-archinstall setup.
 
+# Contents
+
+- [iwctl](#iwctl)
+- [archinstall](#archinstall)
+- [pacman](#pacman)
+- [aur](#aur)
+- [hardware](#hardware)
+- [packages](#packages)
+- [docker](#docker)
+- [kubernetes](#kubernetes)
+- [libvirt](#libvirt)
+- [zsh](#zsh)
+- [github](#github)
+
 ## iwctl
 
 ```bash
@@ -21,13 +35,13 @@ curl https://raw.githubusercontent.com/mattsiedenburg/archsetup/main/\{config.js
 archinstall --config config.json --disk_layouts disks.json --creds creds.json --silent && reboot
 ```
 
-## pacman config
+## pacman
 
 ```bash
 sudo vim /etc/pacman.conf
 ```
 
-### enable multilib
+### multilib
 
 ```text
 [multilib]
@@ -52,7 +66,7 @@ ParallelDownloads = 5
 sudo pacman -Syu
 ```
 
-## reflector
+### reflector
 
 ```bash
 sudo pacman -S reflector --needed
@@ -179,7 +193,7 @@ yay -S sublime-text-4 visual-studio-code-bin git git-lfs --needed
 ```
 
 
-### docker
+## docker
 
 ```bash
 yay -S docker docker-compose --needed
@@ -188,7 +202,7 @@ sudo usermod -a -G docker $USER
 newgrp docker
 ```
 
-### k8s
+## kubernetes
 
 ```bash
 yay -S kubectl helm minikube kind-bin k9s lens-bin --needed
@@ -200,7 +214,7 @@ source <(minikube completion zsh)
 source <(kind completion zsh)
 ```
 
-### libvirt/kvm/qemu
+## libvirt
 
 ```bash
 yay -S libvirt qemu virt-manager --needed
@@ -208,26 +222,26 @@ yay -S iptables-nft dnsmasq dmidecode --needed
 yay -S bridge-utils --needed
 yay -S openbsd-netcat --needed
 yay -S virt-manager --needed
-yay -S vagrant --needed
 
 sudo systemctl enable libvirtd.service --now
 sudo usermod -a -G libvirt $USER
 newgrp libvirt
+
+yay -S vagrant --needed
+vagrant plugin install vagrant-libvirt
 ```
 
-## shell config
+## zsh
+
+```bash
+yay -S zsh --needed
+chsh --shell=/bin/zsh
+```
 
 ### glyphs
 
 ```bash
 yay -S ttf-nerd-fonts-symbols --needed
-```
-
-### zsh
-
-```bash
-yay -S zsh --needed
-chsh --shell=/bin/zsh
 ```
 
 ### bat and exa
@@ -270,7 +284,7 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 ```
 
-## github setup
+## github
 
 ### ssh key
 
