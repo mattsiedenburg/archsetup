@@ -191,7 +191,7 @@ newgrp docker
 ### k8s
 
 ```bash
-yay -S kubectl helm minikube kind-bin --needed
+yay -S kubectl helm minikube kind-bin k9s lens-bin --needed
 
 # $HOME/.zshrc
 source <(kubectl completion zsh)
