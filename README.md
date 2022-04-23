@@ -158,7 +158,7 @@ yay -S intel-ucode --needed
 ### general
 
 ```bash
-yay -S man-db man-pages --needed
+yay -S man-db man-pages ntfs-3g --needed
 ```
 
 ### gnome
@@ -183,7 +183,7 @@ yay -S spotify audacious vlc --needed
 ### gaming
 
 ```bash
-yay -S steam lutris minecraft-launcher --needed
+yay -S steam lutris minecraft-launcher gamemode --needed
 ```
 
 ### text editors and dev tools
@@ -291,7 +291,7 @@ antigen apply
 ```bash
 ssh-keygen -t rsa -C "matthewsiedenburg@domain.com"
 ssh-add
-# Add key to github
+# Add public key to github before testing
 ```
 
 ### test
