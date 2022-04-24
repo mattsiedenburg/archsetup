@@ -12,6 +12,7 @@ TODO: Use ansible to automate the post-archinstall setup.
 - [pacman](#pacman)
 - [aur](#aur)
 - [hardware](#hardware)
+- [kernel](#kernel)
 - [packages](#packages)
 - [docker](#docker)
 - [kubernetes](#kubernetes)
@@ -155,10 +156,10 @@ yay -S intel-ucode --needed
 
 ## kernel
 
-### install zen kernel
+### zen kernel and nvidia drivers
 
 ```bash
-yay -S linux-zen linux-zen-headers --needed
+yay -S linux-zen linux-zen-headers nvidia-dkms --needed
 ```
 
 ### update grub
@@ -167,9 +168,9 @@ yay -S linux-zen linux-zen-headers --needed
 sudo vim /etc/default/grub
 
 # /etc/default/grub
-GRUB_DISABLE_SUBMENU=y
 GRUB_DEFAULT=saved
 GRUB_SAVEDEFAULT=true
+GRUB_DISABLE_SUBMENU=y
 ```
 
 ### regenerate grub config
