@@ -153,6 +153,31 @@ sudo systemctl enable thermald.service --now
 yay -S intel-ucode --needed
 ```
 
+## kernel
+
+### install zen kernel
+
+```bash
+yay -S linux-zen linux-zen-headers --needed
+```
+
+### update grub
+
+```bash
+sudo vim /etc/default/grub
+
+# /etc/default/grub
+GRUB_DISABLE_SUBMENU=y
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
+
+### regenerate grub config
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 ## packages
 
 ### general
