@@ -55,30 +55,15 @@ sudo vim /etc/fstab
 
 ```bash
 sudo vim /etc/pacman.conf
-```
 
-### multilib
-
-```text
+# /etc/pacman.conf, uncomment the following lines
 [multilib]
 Include = /etc/pacman.d/mirrorlist
-```
-
-### enable color
-
-```text
+...
 Color
-```
-
-### enable parallel downloads
-
-```text
+...
 ParallelDownloads = 5
-```
 
-### update pacman
-
-```bash
 sudo pacman -Syu
 ```
 
@@ -86,17 +71,7 @@ sudo pacman -Syu
 
 ```bash
 sudo pacman -S reflector --needed
-```
-
-### edit config
-
-```bash
-sudo vim /etc/xdg/reflector/reflector.conf
-```
-
-### enable timer
-
-```bash
+sudo vim /etc/xdg/reflector/reflector.conf # optional
 sudo systemctl enable reflector.timer --now
 ```
 
@@ -184,7 +159,9 @@ sudo vim /etc/default/grub
 
 # /etc/default/grub
 GRUB_DEFAULT=saved
+...
 GRUB_SAVEDEFAULT=true
+...
 GRUB_DISABLE_SUBMENU=y
 ```
 
