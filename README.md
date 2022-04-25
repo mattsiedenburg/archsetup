@@ -9,6 +9,7 @@ TODO: Use ansible to automate the post-archinstall setup.
 
 - [iwctl](#iwctl)
 - [archinstall](#archinstall)
+- [swap](#swap)
 - [pacman](#pacman)
 - [aur](#aur)
 - [hardware](#hardware)
