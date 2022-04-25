@@ -36,6 +36,20 @@ curl https://raw.githubusercontent.com/mattsiedenburg/archsetup/main/\{config.js
 archinstall --config config.json --disk_layouts disks.json --creds creds.json --silent && reboot
 ```
 
+## swap
+
+```bash
+# Only necessary if swap/zram is not selected with archinstall
+sudo dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
+sudo chmod 0600 /swapfile
+sudo mkswap -U clear /swapfile
+sudo swapon /swapfile
+sudo vim /etc/fstab
+
+# /etc/fstab
+/swapfile none swap defaults 0 0
+```
+
 ## pacman
 
 ```bash
@@ -275,7 +289,7 @@ yay -S ttf-nerd-fonts-symbols --needed
 ```bash
 yay -S bat exa --needed
 
-# add to .zshrc
+# $HOME/.zshrc
 alias ll='exa -ahl --group-directories-first --icons --color always'
 alias less='bat'
 alias cat='bat -pp'
