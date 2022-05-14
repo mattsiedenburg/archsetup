@@ -107,14 +107,13 @@ pactl set-sink-volume @DEFAULT_SINK@ 25%
 
 ```bash
 sudo systemctl enable bluetooth.service --now
-```
 
-```text
 # /etc/bluetooth/main.conf
-
 [Policy]
 ...
 AutoEnable=true
+
+rfkill unblock bluetooth
 ```
 
 ### prime
