@@ -1,69 +1,133 @@
 
 # archsetup
 
-Documenting my setup.
-
-TODO: Use ansible to automate the post-archinstall setup.
+Documenting my setup. I don't want to automate this with ansible/scripting but wanted to be able to pick and choose depending on my usecase and hardware.
 
 # Contents
 
-- [iwctl](#iwctl)
-- [archinstall](#archinstall)
-- [swap](#swap)
-- [pacman](#pacman)
-- [aur](#aur)
+- [setup](#setup)
+    - [wipefs](#wipefs)
+    - [connect to wi-fi](#connect-to-wi-fi)
+    - [archinstall](#archinstall)
+    - [swap](#swap)
+- [pacman and aur](#pacman-and-aur)
+    - [pacman](#pacman)
+    - [reflector](#reflector)
+    - [yay](#yay)
 - [hardware](#hardware)
+    - [power](#power)   
+    - [bluetooth](#bluetooth)
+    - [prime](#prime)
+    - [ssd trim](#ssd-trime)
+    - [microcode](#microcode)
 - [kernel](#kernel)
+    - [zen](#zen)
+    - [lts](#lts)
+    - [dkms](#dkms)
+    - [grub](#grub)
 - [packages](#packages)
-- [docker](#docker)
-- [kubernetes](#kubernetes)
-- [libvirt](#libvirt)
+    - [general](#general)
+    - [internet](#internet)
+    - [gaming](#gaming)
+    - [text editors and dev tools](#text-editors-and-dev-tools)
+- [virtualization and containers](#virtualization-and-containers)
+    - [docker](#docker)
+    - [kubernetes](#kubernetes)
+    - [libvirt](#libvirt)
+    - [vagrant](#vagrant)
 - [zsh](#zsh)
+    - [plugins](#plugins)
+    - [starship](#starship)
+    - [antigen](#antigen)
+    - [antigen setup](#antigen-setup)
+    - [glyphs](#glyphs)
+    - [bat and eza](#bat-and-eza)
 - [github](#github)
+    - [ssh key](#ssh-key)
+    - [test](#test)
+    - [config](#config)
 
-## iwctl
+## setup
+
+### wipefs
+
+Necessary in some circumstances where archinstall is unable to format the disk.
+
+All data will be lost.
+
+NVMe: `/dev/nvme0n1`
+
+SATA: `/dev/sda`
 
 ```bash
-# <DEVICE is typically wlan0>
-iwctl --passphrase=<PSK> station <DEVICE> connect <SSID>
+wipefs -a /dev/nvme0n1
 ```
 
-## archinstall
+### connect to wi-fi
 
 ```bash
-# Passing multiple URLs doesn't seem to work, so download configs locally
-curl https://raw.githubusercontent.com/mattsiedenburg/archsetup/main/\{config.json,disks.json,creds.json\} -O
-
-archinstall --config config.json --disk_layouts disks.json --creds creds.json --silent && reboot
+iwctl
 ```
 
-## swap
+Needed if using Wi-Fi for installation.
+
+Device name is typically `wlan0`.
+
+Substitute `MyWiFiSSID` with actual SSID.
 
 ```bash
-# Only necessary if swap/zram is not selected with archinstall
+station wlan0 connect MyWiFiSSID
+```
+
+### archinstall
+
+
+```bash
+pacman -Sy archinstall --noconfirm
+archinstall
+```
+
+### swap
+
+Only necessary if swap/zram is not selected with archinstall.
+
+```bash
 sudo dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
 sudo chmod 0600 /swapfile
 sudo mkswap -U clear /swapfile
 sudo swapon /swapfile
-sudo vim /etc/fstab
+```
 
-# /etc/fstab
+Update `/etc/fstab`.
+
+```bash
+sudo vim /etc/fstab
+```
+
+Contents of `/etc/fstab`
+
+```bash
 /swapfile none swap defaults 0 0
 ```
 
-## pacman
+## pacman and aur
+
+### pacman
 
 ```bash
 sudo vim /etc/pacman.conf
+```
 
-# /etc/pacman.conf, uncomment the following lines
+Uncomment the following lines in `/etc/pacman.conf`:
+
+```bash
+Color
+
 [multilib]
 Include = /etc/pacman.d/mirrorlist
-...
-Color
-...
-ParallelDownloads = 5
+```
 
+```bash
 sudo pacman -Syu
 ```
 
@@ -71,11 +135,21 @@ sudo pacman -Syu
 
 ```bash
 sudo pacman -S reflector --needed
-sudo vim /etc/xdg/reflector/reflector.conf # optional
-sudo systemctl enable reflector.timer --now
 ```
 
-## aur
+Set country code: `US`
+```bash
+sudo vim /etc/xdg/reflector/reflector.conf
+```
+
+Contents of `/etc/xdg/reflector/reflector.conf`:
+```bash
+--country US
+```
+
+```bash
+sudo systemctl enable reflector.timer --now
+```
 
 ### yay
 
@@ -88,90 +162,114 @@ cd ..
 rm -rf yay-bin
 ```
 
-### octopi
-
-```bash
-yay -S octopi alpm_octopi_utils octopi-notifier-qt5 --needed
-```
-
 ## hardware
-
-### unmute and set volume level
-
-```bash
-pactl set-sink-mute @DEFAULT_SINK@ false
-pactl set-sink-volume @DEFAULT_SINK@ 25%
-```
-
-### enable bluetooth
-
-```bash
-sudo systemctl enable bluetooth.service --now
-
-# /etc/bluetooth/main.conf
-[Policy]
-...
-AutoEnable=true
-
-rfkill unblock bluetooth
-```
-
-### prime
-
-```bash
-yay -S nvidia-prime --needed
-```
-
-### touchpad
-
-```bash
-yay -S touchegg touche --needed
-sudo systemctl enable touchegg.service --now
-```
-
-### ssd trim
-
-```bash
-yay -S util-linux --needed
-sudo systemctl enable fstrim.timer
-```
 
 ### power
 
 ```bash
-yay -S gnome-power-manager power-profiles-daemon thermald --needed
+yay -S power-profiles-daemon --needed
 sudo systemctl enable power-profiles-daemon.service --now
+```
+
+AMD Ryzen only, for reading power statistics using mangohud.
+
+```bash 
+yay -S zenpower3-dkms --needed
+```
+
+Intel only
+
+```bash
+yay -S thermald --needed
 sudo systemctl enable thermald.service --now
 ```
 
+### bluetooth
+
+If a Bluetooth adapter installed.
+
+```bash
+sudo systemctl enable bluetooth.service --now
+```
+
+### ssd trim
+
+Installed and enabled by default when using archinstall.
+```bash
+yay -S util-linux --needed
+sudo systemctl enable fstrim.timer --now
+```
+
 ### microcode update
+
+Microcode installed automatically when using archinstall.
+
+__Intel__
 
 ```bash
 yay -S intel-ucode --needed
 ```
 
-## kernel
-
-### zen kernel and nvidia drivers
+__AMD__
 
 ```bash
-yay -S linux-zen linux-zen-headers nvidia-dkms --needed
+yay -S amd-ucode --needed
 ```
 
-### update grub
+### prime
+
+Nvidia hybrid graphics laptop only.
+```bash
+yay -S nvidia-prime --needed
+```
+
+## kernel
+
+### zen
+
+```bash
+yay -S linux-zen linux-zen-headers --needed
+```
+
+### lts
+
+```bash
+yay -S linux-lts linux-lts-headers --needed
+```
+
+### dkms
+
+Nvidia hybrid graphics only, needed only when running non-mainline kernel.
+
+```bash
+yay -S nvidia-dkms --needed
+```
+
+### grub
+
+If dualbooting, install `os-prober`
+
+```bash
+yay -S os-prober --needed
+```
+
+If using more than one kernel, edit grub.
 
 ```bash
 sudo vim /etc/default/grub
+```
 
-# /etc/default/grub
+Contents of `/etc/default/grub`:
+
+```bash
 GRUB_DEFAULT=saved
 ...
 GRUB_SAVEDEFAULT=true
 ...
 GRUB_DISABLE_SUBMENU=y
+...
+GRUB_DISABLE_OS_PROBER=false # if dual booting
 ```
-
-### regenerate grub config
 
 ```bash
 sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -182,75 +280,84 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ### general
 
 ```bash
-yay -S man-db man-pages ntfs-3g --needed
-```
-
-### gnome
-
-```bash
-# GNOME only
-yay -S gnome-tweaks chrome-gnome-shell extension-manager --needed
+yay -S man-db man-pages --needed
 ```
 
 ### internet
 
 ```bash
-yay -S firefox transmission-gtk zoom --needed
-```
-
-### media
-
-```bash
-yay -S spotify audacious vlc --needed
+yay -S firefox --needed
 ```
 
 ### gaming
 
 ```bash
-yay -S steam lutris minecraft-launcher gamemode --needed
+yay -S steam \
+    gamemode \
+    gamescope \
+    mangohud \
+    goverlay \
+    minecraft-launcher --needed
 ```
 
 ### text editors and dev tools
 
 ```bash
-yay -S sublime-text-4 visual-studio-code-bin git git-lfs --needed
+yay -S vim \
+    sublime-text-4 \
+    visual-studio-code-bin \
+    git --needed
 ```
 
+## virtualization and containers
 
-## docker
+### docker
 
 ```bash
 yay -S docker docker-compose --needed
 sudo systemctl enable docker.service --now
 sudo usermod -a -G docker $USER
-newgrp docker
 ```
 
-## kubernetes
+### kubernetes
 
 ```bash
-yay -S kubectl helm minikube kind-bin k9s lens-bin --needed
+yay -S kubectl \
+    helm \
+    minikube \
+    kind-bin \
+    k9s --needed
+```
 
-# $HOME/.zshrc
+Contents of `~/.zshrc`:
+
+```bash
 source <(kubectl completion zsh)
 source <(helm completion zsh)
 source <(minikube completion zsh)
 source <(kind completion zsh)
 ```
 
-## libvirt
+### libvirt
 
 ```bash
-yay -S libvirt qemu virt-manager --needed
-yay -S iptables-nft dnsmasq dmidecode --needed
-yay -S bridge-utils --needed
-yay -S openbsd-netcat --needed
-yay -S virt-manager --needed
+yay -S libvirt \
+    qemu \
+    virt-manager \
+    iptables-nft \
+    dnsmasq \
+    dmidecode \
+    bridge-utils \
+    openbsd-netcat \
+    virt-manager --needed
 
 sudo systemctl enable libvirtd.service --now
 sudo usermod -a -G libvirt $USER
-newgrp libvirt
+```
 
+### vagrant
+
+```bash
 yay -S vagrant --needed
 vagrant plugin install vagrant-libvirt
 ```
@@ -259,27 +366,53 @@ vagrant plugin install vagrant-libvirt
 
 ```bash
 yay -S zsh --needed
+touch ~/.zshrc
 chsh --shell=/bin/zsh
 ```
 
-### glyphs
+Contents of `~/.zshrc`:
 
 ```bash
-yay -S ttf-nerd-fonts-symbols --needed
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt SHARE_HISTORY
 ```
 
-### bat and exa
+### plugins
 
 ```bash
-yay -S bat exa --needed
+yay -S zsh-syntax-highlighting \
+    zsh-history-substring-search \
+    zsh-autosuggestions \
+    zsh-autocomplete --needed
+```
 
-# $HOME/.zshrc
-alias ll='exa -ahl --group-directories-first --icons --color always'
-alias less='bat'
-alias cat='bat -pp'
+Contents of `~/.zshrc`:
+
+```bash
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+```
+
+### starship
+
+```bash
+yay starship --needed
+starship preset gruvbox-rainbow -o ~/.config/starship.toml
+```
+
+Contents of `~/.zshrc`:
+
+```bash
+eval "$(starship init zsh)"
 ```
 
 ### antigen
+
+In lieu of starship and manual zsh configurations above:
 
 ```bash
 yay -S antigen --needed
@@ -287,8 +420,9 @@ yay -S antigen --needed
 
 ### antigen setup
 
+Contents of `~/.zshrc`:
+
 ```bash
-# $HOME/.zshrc
 source /usr/share/zsh/share/antigen.zsh
 
 antigen use oh-my-zsh
@@ -308,17 +442,38 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 ```
 
+### glyphs
+
+```bash
+yay -S ttf-nerd-fonts-symbols --needed
+```
+
+### bat and eza
+
+```bash
+yay -S bat eza --needed
+```
+
+Contents of `~/.zshrc`:
+
+```bash
+alias cat='bat'
+alias less='bat'
+alias ls='eza'
+alias ll='eza -ahl --group-directories-first --icons --color always'
+```
+
 ## github
 
 ### ssh key
 
 ```bash
-ssh-keygen -t rsa -C "matthewsiedenburg@domain.com"
-ssh-add
-# Add public key to github before testing
+ssh-keygen
 ```
 
 ### test
+
+Add public key to github before testing.
 
 ```bash
 ssh -T git@github.com
@@ -328,5 +483,5 @@ ssh -T git@github.com
 
 ```bash
 git config --global user.name 'Matt Siedenburg'
-git config --global user.email 'matthewsiedenburg@domain.com'
+git config --global user.email 'email@domain.com'
 ```
