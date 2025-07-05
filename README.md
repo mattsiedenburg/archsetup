@@ -65,11 +65,11 @@ wipefs -a /dev/nvme0n1
 
 ### connect to wi-fi
 
+Needed if using Wi-Fi for installation.
+
 ```bash
 iwctl
 ```
-
-Needed if using Wi-Fi for installation.
 
 Device name is typically `wlan0`.
 
