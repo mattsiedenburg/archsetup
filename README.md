@@ -201,7 +201,7 @@ yay -S util-linux --needed
 sudo systemctl enable fstrim.timer --now
 ```
 
-### microcode update
+### microcode
 
 Microcode installed automatically when using archinstall.
 
