@@ -42,8 +42,9 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
     - [starship](#starship)
     - [antigen](#antigen)
     - [antigen setup](#antigen-setup)
-    - [glyphs](#glyphs)
     - [misc](#misc)
+    - [fonts](#fonts)
+    - [alacritty](#alacritty)
 - [github](#github)
     - [ssh key](#ssh-key)
     - [test](#test)
@@ -457,12 +458,6 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 ```
 
-### glyphs
-
-```bash
-yay -S ttf-nerd-fonts-symbols --needed
-```
-
 ### misc
 
 ```bash
@@ -481,6 +476,28 @@ alias less='bat'
 alias ls='eza'
 alias ll='eza -ahl --group-directories-first --icons --color always'
 alias tree='eza --tree'
+```
+
+### fonts
+
+```bash
+yay -S ttf-firacode-nerd ttf-nerd-fonts-symbols --needed
+```
+
+### alacritty
+
+```bash
+yay -S alacritty --needed
+```
+
+Contents of `~/.alacritty.toml`:
+```ini
+[font]
+normal.family = "FiraCode Nerd Font"
+bold.family = "FiraCode Nerd Font"
+italic.family = "FiraCode Nerd Font"
+bold_italic.family = "FiraCode Nerd Font"
+size = 18.0
 ```
 
 ## github
