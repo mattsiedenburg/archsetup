@@ -487,17 +487,30 @@ yay -S ttf-firacode-nerd ttf-nerd-fonts-symbols --needed
 ### alacritty
 
 ```bash
-yay -S alacritty --needed
+yay -S alacritty alacritty-themes --needed
 ```
 
 Contents of `~/.alacritty.toml`:
 ```ini
+[general]
+import = [
+  "/usr/lib/node_modules/alacritty-themes/themes/Gruvbox-Dark.toml"
+]
+
 [font]
-normal.family = "FiraCode Nerd Font"
-bold.family = "FiraCode Nerd Font"
-italic.family = "FiraCode Nerd Font"
-bold_italic.family = "FiraCode Nerd Font"
-size = 18.0
+size = 18
+
+  [font.normal]
+  family = "FiraCode Nerd Font"
+
+  [font.bold]
+  family = "FiraCode Nerd Font"
+
+  [font.italic]
+  family = "FiraCode Nerd Font"
+
+  [font.bold_italic]
+  family = "FiraCode Nerd Font"
 ```
 
 ## github
