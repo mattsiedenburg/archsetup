@@ -468,7 +468,8 @@ yay -S ttf-nerd-fonts-symbols --needed
 yay -S bat \
     eza \
     ripgrep \
-    fzf --needed
+    fzf \
+    tldr --needed
 ```
 
 Contents of `~/.zshrc`:
