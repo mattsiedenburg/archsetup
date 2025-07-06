@@ -18,7 +18,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
     - [power](#power)   
     - [bluetooth](#bluetooth)
     - [prime](#prime)
-    - [ssd trim](#ssd-trime)
+    - [ssd trim](#ssd-trim)
     - [microcode](#microcode)
 - [kernel](#kernel)
     - [zen](#zen)
