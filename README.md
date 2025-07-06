@@ -249,7 +249,7 @@ yay -S nvidia-dkms --needed
 
 ### grub
 
-If dualbooting, install `os-prober`
+If dual booting, install `os-prober`
 
 ```bash
 yay -S os-prober --needed
