@@ -36,12 +36,13 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
     - [libvirt](#libvirt)
     - [vagrant](#vagrant)
 - [zsh](#zsh)
+    - [history](#history)
     - [plugins](#plugins)
     - [starship](#starship)
     - [antigen](#antigen)
     - [antigen setup](#antigen-setup)
     - [glyphs](#glyphs)
-    - [bat and eza](#bat-and-eza)
+    - [misc](#misc)
 - [github](#github)
     - [ssh key](#ssh-key)
     - [test](#test)
@@ -104,7 +105,7 @@ Update `/etc/fstab`.
 sudo vim /etc/fstab
 ```
 
-Contents of `/etc/fstab`
+Contents of `/etc/fstab`:
 
 ```bash
 /swapfile none swap defaults 0 0
@@ -367,16 +368,29 @@ vagrant plugin install vagrant-libvirt
 ```bash
 yay -S zsh --needed
 touch ~/.zshrc
-chsh --shell=/bin/zsh
+chsh -s $(which zsh)
 ```
+
+### history
+
+Configure zsh history.
 
 Contents of `~/.zshrc`:
 
 ```bash
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
+HISTSIZE=1001
 SAVEHIST=1000
-setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY
 ```
 
 ### plugins
@@ -448,10 +462,13 @@ antigen apply
 yay -S ttf-nerd-fonts-symbols --needed
 ```
 
-### bat and eza
+### misc
 
 ```bash
-yay -S bat eza --needed
+yay -S bat \
+    eza \
+    ripgrep \
+    fzf --needed
 ```
 
 Contents of `~/.zshrc`:
@@ -461,6 +478,7 @@ alias cat='bat'
 alias less='bat'
 alias ls='eza'
 alias ll='eza -ahl --group-directories-first --icons --color always'
+alias tree='eza --tree'
 ```
 
 ## github
