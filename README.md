@@ -20,6 +20,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
     - [prime](#prime)
     - [ssd trim](#ssd-trim)
     - [microcode](#microcode)
+    - [prime](#prime)
 - [kernel](#kernel)
     - [zen](#zen)
     - [lts](#lts)
