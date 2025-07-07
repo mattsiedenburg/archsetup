@@ -27,7 +27,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
     - [dkms](#dkms)
     - [grub](#grub)
 - [packages](#packages)
-    - [general](#general)
+    - [documentation](#documentation)
     - [internet](#internet)
     - [gaming](#gaming)
     - [text editors and dev tools](#text-editors-and-dev-tools)
@@ -280,10 +280,12 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 ## packages
 
-### general
+### documentation
 
 ```bash
-yay -S man-db man-pages --needed
+yay -S man-db \
+    man-pages \
+    tldr --needed
 ```
 
 ### internet
@@ -463,8 +465,7 @@ antigen apply
 yay -S bat \
     eza \
     ripgrep \
-    fzf \
-    tldr --needed
+    fzf --needed
 ```
 
 Contents of `~/.zshrc`:
