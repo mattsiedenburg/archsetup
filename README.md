@@ -3,52 +3,52 @@
 
 Documenting my setup. I don't want to automate this with ansible/scripting but wanted to be able to pick and choose depending on my usecase and hardware.
 
-# Contents
+## Contents
 
 - [setup](#setup)
-    - [wipefs](#wipefs)
-    - [connect to wi-fi](#connect-to-wi-fi)
-    - [archinstall](#archinstall)
-    - [swap](#swap)
+  - [wipefs](#wipefs)
+  - [connect to wi-fi](#connect-to-wi-fi)
+  - [archinstall](#archinstall)
+  - [swap](#swap)
 - [pacman and aur](#pacman-and-aur)
-    - [pacman](#pacman)
-    - [reflector](#reflector)
-    - [yay](#yay)
+  - [pacman](#pacman)
+  - [reflector](#reflector)
+  - [yay](#yay)
 - [hardware](#hardware)
-    - [power](#power)   
-    - [bluetooth](#bluetooth)
+  - [power](#power)
+  - [bluetooth](#bluetooth)
     - [prime](#prime)
     - [ssd trim](#ssd-trim)
     - [microcode](#microcode)
     - [prime](#prime)
 - [kernel](#kernel)
-    - [zen](#zen)
-    - [lts](#lts)
-    - [dkms](#dkms)
-    - [grub](#grub)
+  - [zen](#zen)
+  - [lts](#lts)
+  - [dkms](#dkms)
+  - [grub](#grub)
 - [packages](#packages)
-    - [documentation](#documentation)
-    - [internet](#internet)
-    - [gaming](#gaming)
-    - [text editors and dev tools](#text-editors-and-dev-tools)
+  - [documentation](#documentation)
+  - [internet](#internet)
+  - [gaming](#gaming)
+  - [text editors and dev tools](#text-editors-and-dev-tools)
 - [virtualization and containers](#virtualization-and-containers)
-    - [docker](#docker)
-    - [kubernetes](#kubernetes)
-    - [libvirt](#libvirt)
-    - [vagrant](#vagrant)
+  - [docker](#docker)
+  - [kubernetes](#kubernetes)
+  - [libvirt](#libvirt)
+  - [vagrant](#vagrant)
 - [zsh](#zsh)
-    - [history](#history)
-    - [plugins](#plugins)
-    - [starship](#starship)
-    - [antigen](#antigen)
-    - [antigen setup](#antigen-setup)
-    - [misc](#misc)
-    - [fonts](#fonts)
-    - [alacritty](#alacritty)
+  - [history](#history)
+  - [plugins](#plugins)
+  - [starship](#starship)
+  - [antigen](#antigen)
+  - [antigen setup](#antigen-setup)
+  - [misc](#misc)
+  - [fonts](#fonts)
+  - [alacritty](#alacritty)
 - [github](#github)
-    - [ssh key](#ssh-key)
-    - [test](#test)
-    - [config](#config)
+  - [ssh key](#ssh-key)
+  - [test](#test)
+  - [config](#config)
 
 ## setup
 
@@ -83,7 +83,6 @@ station wlan0 connect MyWiFiSSID
 ```
 
 ### archinstall
-
 
 ```bash
 pacman -Sy archinstall --noconfirm
@@ -141,11 +140,13 @@ sudo pacman -S reflector --needed
 ```
 
 Set country code: `US`
+
 ```bash
 sudo vim /etc/xdg/reflector/reflector.conf
 ```
 
 Contents of `/etc/xdg/reflector/reflector.conf`:
+
 ```bash
 --country US
 ```
@@ -198,6 +199,7 @@ sudo systemctl enable bluetooth.service --now
 ### ssd trim
 
 Installed and enabled by default when using archinstall.
+
 ```bash
 yay -S util-linux --needed
 sudo systemctl enable fstrim.timer --now
@@ -207,13 +209,13 @@ sudo systemctl enable fstrim.timer --now
 
 Microcode installed automatically when using archinstall.
 
-__Intel__
+Intel
 
 ```bash
 yay -S intel-ucode --needed
 ```
 
-__AMD__
+AMD
 
 ```bash
 yay -S amd-ucode --needed
@@ -222,6 +224,7 @@ yay -S amd-ucode --needed
 ### prime
 
 Nvidia hybrid graphics laptop only.
+
 ```bash
 yay -S nvidia-prime --needed
 ```
@@ -491,6 +494,7 @@ yay -S alacritty alacritty-themes --needed
 ```
 
 Contents of `~/.alacritty.toml`:
+
 ```ini
 [general]
 import = [
@@ -529,7 +533,7 @@ Add public key to github before testing.
 ssh -T git@github.com
 ```
 
-### git config
+### config
 
 ```bash
 git config --global user.name 'Matt Siedenburg'
