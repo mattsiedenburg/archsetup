@@ -501,9 +501,8 @@ yay -S alacritty alacritty-themes --needed
 
 Contents of `~/.alacritty.toml`:
 
-```ini
-[general]
-import = [
+```toml
+general.import = [
   "/usr/lib/node_modules/alacritty-themes/themes/Gruvbox-Dark.toml"
 ]
 
