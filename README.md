@@ -42,9 +42,12 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
   - [starship](#starship)
   - [antigen](#antigen)
   - [antigen setup](#antigen-setup)
-  - [misc](#misc)
+- [misc](#misc)
+  - [tools](#tools)
   - [fonts](#fonts)
   - [alacritty](#alacritty)
+- [fish](#fish)
+  - [configure fish](#configure-fish)
 - [github](#github)
   - [ssh key](#ssh-key)
   - [test](#test)
@@ -177,7 +180,7 @@ sudo systemctl enable power-profiles-daemon.service --now
 
 AMD Ryzen only, for reading power statistics using mangohud.
 
-```bash 
+```bash
 yay -S zenpower3-dkms --needed
 ```
 
@@ -462,7 +465,9 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 ```
 
-### misc
+## misc
+
+### tools
 
 ```bash
 yay -S bat \
@@ -515,6 +520,46 @@ size = 18
 
   [font.bold_italic]
   family = "FiraCode Nerd Font"
+```
+
+## fish
+
+```bash
+yay -S fish --needed
+touch ~/.config/fish/config.fish
+chsh -s $(which fish)
+```
+
+### configure fish
+
+Contents of `~/.config/fish/config.fish`
+
+```bash
+if status is-interactive
+    set -U fish_greeting "🐟"
+    set -U EDITOR vim
+    set -U BROWSER firefox
+
+    function ll
+        eza -Ahl --group-directories-first --icons --color always $argv
+    end
+
+    function tree
+        eza -A --tree --icons --color always $argv
+    end
+
+    function cat
+        bat
+    end
+
+    function less
+        bat
+    end
+
+    function yyy
+            yay --noconfirm && yay -Yc --noconfirm && yay -Sc --noconfirm
+    end
+end
 ```
 
 ## github
