@@ -317,6 +317,7 @@ yay -S steam \
 yay -S vim \
     sublime-text-4 \
     visual-studio-code-bin \
+    cursor-bin \
     git --needed
 ```
 
