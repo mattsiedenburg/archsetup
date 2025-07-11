@@ -497,9 +497,10 @@ yay -S ttf-firacode-nerd ttf-nerd-fonts-symbols --needed
 
 ```bash
 yay -S alacritty alacritty-themes --needed
+alacritty-themes --create
 ```
 
-Contents of `~/.alacritty.toml`:
+Contents of `~/.config/alacritty/alacritty.toml`:
 
 ```toml
 general.import = [
