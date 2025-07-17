@@ -318,7 +318,8 @@ yay -S vim \
     sublime-text-4 \
     visual-studio-code-bin \
     cursor-bin \
-    git --needed
+    git
+    net-tools --needed
 ```
 
 ## virtualization and containers
