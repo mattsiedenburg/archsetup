@@ -563,7 +563,7 @@ if status is-interactive
     end
 
     function yyy
-            yay --noconfirm && yay -Yc --noconfirm && yay -Sc --noconfirm
+        yay --noconfirm && yay -Yc --noconfirm && yay -Sc --noconfirm
     end
 end
 ```
