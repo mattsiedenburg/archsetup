@@ -136,6 +136,10 @@ Include = /etc/pacman.d/mirrorlist
 sudo pacman -Syu
 ```
 
+```
+sudo pacman -S pacman-contrib --needed
+```
+
 ### reflector
 
 ```bash
