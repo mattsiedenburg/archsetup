@@ -87,6 +87,8 @@ station wlan0 connect MyWiFiSSID
 
 ### archinstall
 
+Update archinstall script
+
 ```bash
 pacman -Sy archinstall --noconfirm
 archinstall
