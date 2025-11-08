@@ -57,7 +57,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
 
 ### wipefs
 
-Necessary in some circumstances where archinstall is unable to format the disk.
+Necessary in some circumstances where `archinstall` is unable to format the disk.
 
 All data will be lost.
 
@@ -87,7 +87,7 @@ station wlan0 connect MyWiFiSSID
 
 ### archinstall
 
-Update archinstall script
+Update `archinstall` script
 
 ```bash
 pacman -Sy archinstall --noconfirm
@@ -96,7 +96,7 @@ archinstall
 
 ### swap
 
-Only necessary if swap/zram is not selected with archinstall.
+Only necessary if swap/zram is not selected with `archinstall`.
 
 ```bash
 sudo dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
@@ -125,7 +125,7 @@ Contents of `/etc/fstab`:
 sudo vim /etc/pacman.conf
 ```
 
-Uncomment the following lines in `/etc/pacman.conf` (`multilib` can now be enabled with archinstall):
+Uncomment the following lines in `/etc/pacman.conf` (`multilib` can now be enabled with `archinstall`):
 
 ```bash
 Color
@@ -207,7 +207,7 @@ sudo systemctl enable bluetooth.service --now
 
 ### ssd trim
 
-Installed and enabled by default when using archinstall.
+Installed and enabled by default when using `archinstall`.
 
 ```bash
 yay -S util-linux --needed
@@ -216,7 +216,7 @@ sudo systemctl enable fstrim.timer --now
 
 ### microcode
 
-Microcode installed automatically when using archinstall.
+Microcode installed automatically when using `archinstall`.
 
 Intel
 
