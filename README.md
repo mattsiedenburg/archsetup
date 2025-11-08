@@ -125,7 +125,7 @@ Contents of `/etc/fstab`:
 sudo vim /etc/pacman.conf
 ```
 
-Uncomment the following lines in `/etc/pacman.conf` (multilib can now be enabled with archinstall):
+Uncomment the following lines in `/etc/pacman.conf` (`multilib` can now be enabled with archinstall):
 
 ```bash
 Color
