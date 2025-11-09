@@ -199,7 +199,7 @@ sudo systemctl enable thermald.service --now
 
 ### bluetooth
 
-If a Bluetooth adapter installed.
+If a Bluetooth adapter installed. The `bluetooth` service can now be enabled with `archinstall`.
 
 ```bash
 sudo systemctl enable bluetooth.service --now
