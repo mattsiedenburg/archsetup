@@ -5,6 +5,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
 
 ## Contents
 
+- [download](#download)
 - [setup](#setup)
   - [wipefs](#wipefs)
   - [connect to wi-fi](#connect-to-wi-fi)
@@ -52,6 +53,12 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
   - [ssh key](#ssh-key)
   - [test](#test)
   - [config](#config)
+
+## download
+
+```bash
+curl -O https://mirrors.ocf.berkeley.edu/archlinux/iso/latest/archlinux-x86_64.iso
+```
 
 ## setup
 
@@ -297,13 +304,15 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```bash
 yay -S man-db \
     man-pages \
-    tldr --needed
+    tlrc-bin --needed
 ```
 
 ### internet
 
 ```bash
-yay -S firefox --needed
+yay -S firefox \
+    mullvad-vpn-bin \
+    bitwarden --needed
 ```
 
 ### gaming
