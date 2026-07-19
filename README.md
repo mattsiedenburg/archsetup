@@ -10,6 +10,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
   - [wipefs](#wipefs)
   - [connect to wi-fi](#connect-to-wi-fi)
   - [archinstall](#archinstall)
+  - [wheel](#wheel)
   - [swap](#swap)
 - [pacman and aur](#pacman-and-aur)
   - [pacman](#pacman)
@@ -102,8 +103,7 @@ archinstall
 ```
 
 ### wheel
-Even though `archinstall` can grant users `sudo` access, GUI applications that require escalated privileges will prompt for `root`'s password until you add  
-the user to `wheel`.
+Even though `archinstall` can grant users `sudo` access, GUI applications that require escalated privileges will prompt for `root`'s password until you add the user to `wheel`.
 
 ```bash
 sudo usermod -G wheel matt
