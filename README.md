@@ -101,6 +101,14 @@ pacman -Sy archinstall --noconfirm
 archinstall
 ```
 
+### wheel
+Even though `archinstall` can grant users `sudo` access, GUI applications that require escalated privileges will prompt for `root`'s password until you add  
+the user to `wheel`.
+
+```bash
+sudo usermod -G wheel matt
+```
+
 ### swap
 
 Only necessary if swap/zram is not selected with `archinstall`.
