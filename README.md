@@ -194,6 +194,8 @@ rm -rf yay-bin
 
 ### power
 
+Only required if `power-profiles-daemon` wasn't selected during `archinstall`.
+
 ```bash
 yay -S power-profiles-daemon --needed
 sudo systemctl enable power-profiles-daemon.service --now
@@ -214,7 +216,7 @@ sudo systemctl enable thermald.service --now
 
 ### bluetooth
 
-If a Bluetooth adapter installed. The `bluetooth` service can now be enabled with `archinstall`.
+If a Bluetooth adapter installed. Only required if `bluetooth` service was not enabled with `archinstall`.
 
 ```bash
 sudo systemctl enable bluetooth.service --now
@@ -254,6 +256,8 @@ yay -S nvidia-prime --needed
 ```
 
 ## kernel
+
+`zen` and `lts` can now be installed during `archinstall`.
 
 ### zen
 
@@ -556,6 +560,8 @@ chsh -s $(which fish)
 ```
 
 ### configure fish
+
+`alias` in lieu of `function` is also supported in `fish`. Also consider `abbr`.
 
 Contents of `~/.config/fish/config.fish`
 
