@@ -194,6 +194,14 @@ rm -rf yay-bin
 
 ### power
 
+For ASUS laptop battery charge threshold
+
+```bash
+yay -S bat-asus-battery-bin --needed
+sudo bat-asus-battery threshold 75
+sudo bat-asus-battery persist
+```
+
 Only required if `power-profiles-daemon` wasn't selected during `archinstall`.
 
 ```bash
