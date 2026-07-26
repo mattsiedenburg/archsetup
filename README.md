@@ -191,7 +191,7 @@ cd ..
 rm -rf yay-bin
 ```
 
-### archupdate
+### arch-update
 
 ```bash
 yay -S arch-update --needed
