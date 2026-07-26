@@ -16,6 +16,7 @@ Documenting my setup. I don't want to automate this with ansible/scripting but w
   - [pacman](#pacman)
   - [reflector](#reflector)
   - [yay](#yay)
+  - [arch-update](#arch-update)
 - [hardware](#hardware)
   - [power](#power)
   - [bluetooth](#bluetooth)
@@ -188,6 +189,14 @@ cd yay-bin
 makepkg -si
 cd ..
 rm -rf yay-bin
+```
+
+### archupdate
+
+```bash
+yay -S arch-update --needed
+arch-update --tray --enable
+arch-update --check --enable
 ```
 
 ## hardware
